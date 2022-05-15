@@ -1,0 +1,5 @@
+ptlibs~=0.0.6
+requests~=2.27.1
+impacket~=0.9.24
+validators~=0.18.2
+setuptools~=60.9.3

@@ -1,0 +1,72 @@
+{
+  "plugins": [
+    "plugins.synflood",
+    "plugins.udpflood",
+    "plugins.httpgetflood",
+    "plugins.httppostflood",
+    "plugins.httpheadflood",
+    "plugins.icmpflood",
+    "plugins.smurf",
+    "plugins.pingofdeath",
+    "plugins.ntpampl",
+    "plugins.slowloris",
+    "plugins.rudy"
+  ],
+  "attacks": [
+    {
+      "type": "synflood",
+      "category": "Flood attacks",
+      "name": "synflood"
+    },
+    {
+      "type": "udpflood",
+      "category": "Flood attacks",
+      "name": "udpflood"
+    },
+    {
+      "type": "httpgetflood",
+      "category": "Flood attacks",
+      "name": "httpgetflood"
+    },
+    {
+      "type": "httppostflood",
+      "category": "Flood attacks",
+      "name": "httppostflood"
+    },
+    {
+      "type": "httpheadflood",
+      "category": "Flood attacks",
+      "name": "httpheadflood"
+    },
+    {
+      "type": "icmpflood",
+      "category": "Flood attacks",
+      "name": "icmpflood"
+    },
+    {
+      "type": "smurf",
+      "category": "Amplification attacks",
+      "name": "smurf"
+    },
+    {
+      "type": "pingofdeath",
+      "category": "Logical attacks",
+      "name": "pingofdeath"
+    },
+    {
+      "type": "ntpampl",
+      "category": "Amplification attacks",
+      "name": "ntpampl"
+    },
+    {
+      "type": "slowloris",
+      "category": "Logical attacks",
+      "name": "slowloris"
+    },
+    {
+      "type": "rudy",
+      "category": "Logical attacks",
+      "name": "rudy"
+    }
+  ]
+}
