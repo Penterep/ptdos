@@ -86,7 +86,7 @@ class UdpFlood:
         """Help for attack printed out in main file ptdos.py."""
         return [
             {"UDP Flood attack options": [
-                ["-a", "--attack", "udpflood", "Attack name: udpflood"],
+                ["-a", "--attack", "udpflood", "Attack name - udpflood"],
                 ["-d", "--duration", "<duration>", "Specify attack's duration in seconds. Default 10 seconds."],
                 ["-dst", "--destination", "<dst>", "Specify destination IP or domain."],
                 ["-dp", "--dstport", "<dstport>", "Specify destination port. Default 80."],
