@@ -3,3 +3,4 @@ build
 dist
 ptdos.egg-info
 venv
+__pycache__

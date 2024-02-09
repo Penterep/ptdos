@@ -19,6 +19,9 @@ def is_tool(name):
 def parse_url(dst):
     """Parse url and return hostname, port, and path"""
     url = urlparse(dst)
+    if url.scheme not in ("http", "https"):
+        url = urlparse("http://" + dst)
+
     return url
 
 

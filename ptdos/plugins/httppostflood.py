@@ -11,7 +11,7 @@ from misc.pt_socket import create_socket
 from dataclasses import dataclass
 from time import time, sleep, asctime
 from ptlibs.ptmisclib import out_if, out_ifnot, ptprint
-from urllib.parse import urlparse
+from misc.globalfuncs import parse_url
 from socket import error
 
 
@@ -24,7 +24,7 @@ class HttpPostFlood:
     def launch_attack(self, args, dst, duration, use_json, json_obj, json_no, monitoring, att_start_t_epoch, att_start_t_asc) -> None:
         """Main function responsible for launching the attack."""
         sleeptime = args['sleeptime']
-        url = urlparse(dst)
+        url = parse_url(dst)
         body = args['body']
         query = args['query']
 
