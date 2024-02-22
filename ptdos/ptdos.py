@@ -4,8 +4,10 @@ import os
 from argparse import ArgumentParser
 from sys import path, exit, argv
 from json import load
-from ptlibs.ptmisclib import out_ifnot, ptprint, help_print, print_banner, end_error
-from ptlibs.ptjsonlib import ptjsonlib
+
+from ptlibs import ptjsonlib
+from ptlibs.ptprinthelper import out_ifnot, ptprint, help_print, print_banner
+
 from time import time, asctime
 
 # import custom libraries - used because of pypi
@@ -20,14 +22,15 @@ from monitoring.ptcheckservice import CheckService
 
 
 class PtDos:
-    def __init__(self, argparse_dict):
+    def __init__(self, argparse_dict: dict):
         """parse general input arguments used by all plugins"""
         self.argsjson = argparse_dict
         self.dst = argparse_dict['dst']
         self.duration = argparse_dict['duration']
-        self.use_json = argparse_dict['json']
-        self.json_obj = ptjsonlib(self.argsjson['json'])  # create json object
-        self.json_no = self.json_obj.add_json(self.argsjson['attack'])  # add attack to json
+        self.use_json = False #argparse_dict['json']
+        #self.json_obj = ptjsonlib.PtJsonLib()  # create json object
+        self.ptjsonlib = ptjsonlib.PtJsonLib()  # create json object
+        self.json_no = None #self.json_obj.add_json(self.argsjson['attack'])  # add attack to json
 
     def run(self, attacks):
         """Run the ptdos application"""
@@ -38,8 +41,7 @@ class PtDos:
 
         # Attack name, destination and duration must be specified otherwise exit
         if not self.argsjson['attack'] or not self.argsjson['dst']:
-            end_error("Attack name or destination is missing", self.json_no, self.json_obj, self.argsjson['json'])
-            exit(1)
+            self.ptjsonlib.end_error("Attack name or destination is missing", self.use_json)
 
         # Select and launch attack specified in argument
         for attack in attacks:
@@ -50,12 +52,11 @@ class PtDos:
                 # print Penterep Tools banner if json == false
                 print_banner(SCRIPTNAME, __version__, self.argsjson['json'])
                 ptprint(out_ifnot("------------------- Test status -------------------", "INFO", self.use_json, colortext=True))
-
                 # Initialize monitoring from checkService
                 monitoring = CheckService(self.dst, self.argsjson['dstport'])
 
                 # monitoring destination before test start
-                monitoring.monitoring_before_start(self.json_no, self.json_obj, self.use_json)
+                monitoring.monitoring_before_start(self.ptjsonlib, self.use_json)
 
                 # attack start time
                 att_start_t_epoch = time()  # save time in seconds since epoch started (1.1.1970)
@@ -63,11 +64,10 @@ class PtDos:
                 ptprint(out_ifnot(f"Test started at {att_start_t_asc}", "INFO", self.use_json))
 
                 # call method inside the plugin and give parsed args with json object
-                attack.launch_attack(self.argsjson, self.dst, self.duration, self.use_json, self.json_obj, self.json_no, monitoring, att_start_t_epoch, att_start_t_asc)
+                attack.launch_attack(self.argsjson, self.dst, self.duration, self.use_json, self.ptjsonlib, self.json_no, monitoring, att_start_t_epoch, att_start_t_asc)
                 exit(0)  # application exit after attack done
 
-        end_error(f"Attack '{self.argsjson['attack']}' is misspelled or does not exist", self.json_no, self.json_obj, self.argsjson['json'])
-        exit(1)
+        self.ptjsonlib.end_error(f"Attack '{self.argsjson['attack']}' is misspelled or does not exist", self.use_json)
 
 
 def parse_args(attacks):

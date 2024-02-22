@@ -5,7 +5,7 @@
 # own libs
 from infrastructure import factory
 from monitoring.ptcheckservice import attack_append_out_data, attack_checkservice_review, print_error
-from ptlibs.ptmisclib import out_if, out_ifnot, ptprint, end_error
+from ptlibs.ptprinthelper import out_if, out_ifnot, ptprint
 from misc.globalfuncs import is_tool
 # external libs
 from dataclasses import dataclass
@@ -26,7 +26,7 @@ class SynFlood:
         payload_len = args['datalength']
 
         if not dstport:
-            end_error("Destination port is not specified.", json_no, json_obj, use_json)
+            json_obj.end_error("Destination port is not specified.", use_json)
             exit(1)
 
         hpingcmd = f"hping3 -S --flood -V -d {payload_len} -p {dstport} {dst}"
@@ -67,7 +67,7 @@ class SynFlood:
             monitoring.checkservice_append_out_data(json_obj, use_json, json_no)
 
             # print JSON object to console if self.use_json == TRUE
-            ptprint(out_if(json_obj.get_all_json(), "", use_json))
+            # FIXME: ptprint(out_if(json_obj.get_all_json(), "", use_json))
 
             return
 

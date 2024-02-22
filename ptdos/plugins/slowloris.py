@@ -8,7 +8,7 @@ from monitoring.ptcheckservice import attack_append_out_data, attack_checkservic
 from misc.globalfuncs import generate_string, load_user_agents, get_ip_from_dst, parse_url
 from misc.pt_http import create_slowloris_socket
 # external libs
-from ptlibs.ptmisclib import out_if, out_ifnot, ptprint
+from ptlibs.ptprinthelper import out_if, out_ifnot, ptprint
 from time import time, asctime, sleep
 from socket import error
 from dataclasses import dataclass
@@ -26,7 +26,7 @@ class Slowloris:
         socksquant = args['socksquant']
         sleeptime = args['sleeptime']
         url = parse_url(dst)
-        dst_ip = get_ip_from_dst(url.hostname)
+        dst_ip = get_ip_from_dst(url.hostname) if url.hostname else dst
 
         # initialize ua and langs
         my_user_agents, my_accept_lang = load_user_agents()
@@ -70,7 +70,7 @@ class Slowloris:
             monitoring.checkservice_append_out_data(json_obj, use_json, json_no)
 
             # print JSON object to console if self.use_json == TRUE
-            ptprint(out_if(json_obj.get_all_json(), "", use_json))
+            # FIXME: ptprint(out_if(json_obj.get_all_json(), "", use_json))
 
             return
 

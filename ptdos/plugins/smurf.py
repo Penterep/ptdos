@@ -11,7 +11,7 @@ from misc.pt_icmp import create_icmp_packet
 # external libs
 from dataclasses import dataclass
 from socket import error
-from ptlibs.ptmisclib import out_if, ptprint, end_error, out_ifnot
+from ptlibs.ptprinthelper import out_if, ptprint, out_ifnot
 from time import time, asctime, sleep
 
 
@@ -30,8 +30,7 @@ class Smurf:
 
         # Attack name, destination and duration must be specified otherwise exit
         if not brdct:
-            end_error("Broadcast address must be specified.", json_no, json_obj, use_json)
-            exit(1)
+            json_obj.end_error("Broadcast address must be specified.", use_json)
 
         # initialize icmp socket
         sock = create_socket(self.name)
@@ -74,7 +73,7 @@ class Smurf:
             monitoring.checkservice_append_out_data(json_obj, use_json, json_no)
 
             # print JSON object to console if self.use_json == TRUE
-            ptprint(out_if(json_obj.get_all_json(), "", use_json))
+            # FIXME: ptprint(out_if(json_obj.get_all_json(), "", use_json))
 
             return
 

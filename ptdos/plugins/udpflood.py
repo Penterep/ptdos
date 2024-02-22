@@ -7,7 +7,7 @@ from misc.pt_socket import create_socket
 from monitoring.ptcheckservice import attack_append_out_data, attack_checkservice_review, print_error, validate_domain
 from misc.globalfuncs import get_ip_from_dst, generate_payload
 # external libs
-from ptlibs.ptmisclib import out_if, ptprint, out_ifnot
+from ptlibs.ptprinthelper import out_if, ptprint, out_ifnot
 from time import time, asctime, sleep
 from dataclasses import dataclass
 from socket import error
@@ -72,7 +72,7 @@ class UdpFlood:
             monitoring.checkservice_append_out_data(json_obj, use_json, json_no)
 
             # print json to console if JSON == TRUE
-            ptprint(out_if(json_obj.get_all_json(), "", use_json))
+            # FIXME: ptprint(out_if(json_obj.get_all_json(), "", use_json))
 
             return
 

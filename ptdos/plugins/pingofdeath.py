@@ -10,7 +10,7 @@ from misc.pt_socket import create_socket
 from dataclasses import dataclass
 from socket import error
 from time import time, asctime, sleep
-from ptlibs.ptmisclib import out_if, ptprint
+from ptlibs.ptprinthelper import out_if, ptprint
 
 
 @dataclass
@@ -59,7 +59,7 @@ class PingOfDeath:
             monitoring.checkservice_append_out_data(json_obj, use_json, json_no)
 
             # print JSON object to console if self.use_json == TRUE
-            ptprint(out_if(json_obj.get_all_json(), "", use_json))
+            # FIXME: ptprint(out_if(json_obj.get_all_json(), "", use_json))
 
             return
 

@@ -4,12 +4,12 @@ from random import choices, randint
 from string import ascii_letters, digits
 from json import load
 from platform import system
-from ptlibs.ptmisclib import out_ifnot, ptprint
 from socket import socket, AF_INET, SOCK_DGRAM, gethostbyname, gaierror
 from ipaddress import ip_address
 from urllib.parse import urlparse
 from shutil import which
 
+from ptlibs.ptprinthelper import out_ifnot, ptprint
 
 def is_tool(name):
     """Check whether `name` is on PATH and marked as executable."""
@@ -18,6 +18,7 @@ def is_tool(name):
 
 def parse_url(dst):
     """Parse url and return hostname, port, and path"""
+
     url = urlparse(dst)
     return url
 

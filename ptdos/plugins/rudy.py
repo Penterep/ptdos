@@ -8,7 +8,7 @@ from monitoring.ptcheckservice import attack_checkservice_review, attack_append_
 from infrastructure import factory
 from misc.globalfuncs import load_user_agents, get_ip_from_dst, parse_url, generate_string
 # external libs
-from ptlibs.ptmisclib import ptprint, out_ifnot, out_if
+from ptlibs.ptprinthelper import ptprint, out_ifnot, out_if
 from time import time, asctime, sleep
 from dataclasses import dataclass
 import multiprocessing as mp
@@ -40,8 +40,11 @@ class Rudy:
         socksquant = args['socksquant']
         sleeptime = args['sleeptime']
         dstport = args['dstport']
+
+
         url = parse_url(dst)
-        dst_ip = get_ip_from_dst(url.hostname)
+        dst_ip = get_ip_from_dst(url.hostname) if url.hostname else dst
+
         process_dict = {}
         total_socks = 0
         # create shared list between processes
@@ -86,7 +89,7 @@ class Rudy:
             monitoring.checkservice_append_out_data(json_obj, use_json, json_no)
 
             # print JSON object to console if self.use_json == TRUE
-            ptprint(out_if(json_obj.get_all_json(), "", use_json))
+            # FIXME: ptprint(out_if(json_obj.get_all_json(), "", use_json))
 
             return
 

@@ -9,7 +9,7 @@ from misc.pt_ntp import create_ntp_packet_list
 # external libs
 from dataclasses import dataclass
 from time import time, asctime, sleep
-from ptlibs.ptmisclib import out_if, out_ifnot, ptprint
+from ptlibs.ptprinthelper import out_if, out_ifnot, ptprint
 from random import choice
 from socket import error
 
@@ -65,7 +65,7 @@ class NtpAmpl:
             monitoring.checkservice_append_out_data(json_obj, use_json, json_no)
 
             # print JSON object to console if self.use_json == TRUE
-            ptprint(out_if(json_obj.get_all_json(), "", use_json))
+            # FIXME: ptprint(out_if(json_obj.get_all_json(), "", use_json))
 
             return
 

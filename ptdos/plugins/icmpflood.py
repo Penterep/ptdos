@@ -10,7 +10,7 @@ from misc.pt_icmp import create_icmp_packet
 # external libs
 from dataclasses import dataclass
 from socket import error
-from ptlibs.ptmisclib import out_if, ptprint, out_ifnot
+from ptlibs.ptprinthelper import out_if, ptprint, out_ifnot
 from time import time, asctime, sleep
 
 
@@ -74,7 +74,7 @@ class IcmpFlood:
             monitoring.checkservice_append_out_data(json_obj, use_json, json_no)
 
             # print JSON object to console if self.use_json == TRUE
-            ptprint(out_if(json_obj.get_all_json(), "", use_json))
+            # FIXME: ptprint(out_if(json_obj.get_all_json(), "", use_json))
 
             return
 
