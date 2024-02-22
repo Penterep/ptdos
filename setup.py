@@ -34,8 +34,7 @@ setup(
     ],
     python_requires='>=3.10.0',
     install_requires=[
-        "ptlibs>=0.0.6",
-        "requests>=2.27.1",
+        "ptlibs>=1.0.5,<2",
         "validators>=0.18.2",
         "impacket>=0.9.24"
     ],
