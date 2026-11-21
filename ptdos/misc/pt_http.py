@@ -4,20 +4,21 @@ from misc.globalfuncs import generate_string, load_user_agents
 # external libs
 from random import choice
 from requests import post
-from requests.exceptions import RequestException
+from requests.exceptions import ReadTimeout, RequestException
 
-def post_file_upload(dst_url, filename, payload_bytes, content_type="application/zip"):
-    """
-    Automatically formats and sends a multipart/form-data request.
-    """
+def post_file_upload(dst_url, filename, payload_bytes, user_agents, accept_lang, content_type="application/zip"):
     try:
-        files = {
-            'file': (filename, payload_bytes, content_type)
+        headers = {
+            "User-Agent": choice(user_agents),
+            "Accept-Language": choice(accept_lang),
+            "Connection": "close",
         }
-        post(dst_url, files=files, timeout=3)
+        files = {'file': (filename, payload_bytes, content_type)}
+        post(dst_url, files=files, headers=headers, timeout=(3, 0.1))
         return True
-        
-    except RequestException as e:
+    except ReadTimeout:
+        return True          # body was sent; we just didn't wait — this is a successful shot
+    except RequestException:
         return False
 
 
