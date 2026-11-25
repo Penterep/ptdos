@@ -14,7 +14,8 @@
     "plugins.zipbomb",
     "plugins.flatbomb",
     "plugins.sevenbomb",
-    "plugins.xmlbomb"
+    "plugins.xmlbomb",
+    "plugins.xmlflatbomb"
   ],
   "attacks": [
     {
@@ -91,6 +92,11 @@
       "type": "xmlbomb",
       "category": "Logical attacks",
       "name": "xmlbomb"
+    },
+    {
+      "type": "xmlflatbomb",
+      "category": "Logical attacks",
+      "name": "xmlflatbomb"
     }
   ]
 }
