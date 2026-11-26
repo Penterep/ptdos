@@ -5,7 +5,7 @@
 from infrastructure import factory
 from misc.pt_xml import build_quadratic, human_size
 from monitoring.ptcheckservice import print_error, attack_append_out_data, attack_checkservice_review
-from misc.pt_http import post_xml_bomb
+from misc.pt_http import post_upload
 from misc.globalfuncs import load_user_agents
 # external libs
 from dataclasses import dataclass
@@ -57,7 +57,7 @@ class XmlFlatBomb:
                     attack_checkservice_review(monitoring, use_json, json_obj, json_no, self.name)
                     break
 
-                if post_xml_bomb(dst, bomb, my_user_agents, my_accept_lang):
+                if post_upload(dst, bomb, my_user_agents, my_accept_lang, "application/xml"):
                     ctx += 1
 
 

