@@ -15,7 +15,7 @@ def is_tool(name):
     """Check whether `name` is on PATH and marked as executable."""
     return which(name) is not None
 
-
+#Peak programming - make a wrapper then forget about wrapper. So now wrapper and the imported function is randomly everywhere.
 def parse_url(dst):
     """Parse url and return hostname, port, and path"""
 

@@ -10,7 +10,12 @@
     "plugins.pingofdeath",
     "plugins.ntpampl",
     "plugins.slowloris",
-    "plugins.rudy"
+    "plugins.rudy",
+    "plugins.zipbomb",
+    "plugins.flatbomb",
+    "plugins.sevenbomb",
+    "plugins.xmlbomb",
+    "plugins.xmlflatbomb"
   ],
   "attacks": [
     {
@@ -67,6 +72,31 @@
       "type": "rudy",
       "category": "Logical attacks",
       "name": "rudy"
+    },
+    {
+      "type": "zipbomb",
+      "category": "Logical attacks",
+      "name": "zipbomb"
+    },
+    {
+      "type": "flatbomb",
+      "category": "Logical attacks",
+      "name": "flatbomb"
+    },
+    {
+      "type": "sevenbomb",
+      "category": "Logical attacks",
+      "name": "sevenbomb"
+    },
+    {
+      "type": "xmlbomb",
+      "category": "Logical attacks",
+      "name": "xmlbomb"
+    },
+    {
+      "type": "xmlflatbomb",
+      "category": "Logical attacks",
+      "name": "xmlflatbomb"
     }
   ]
 }

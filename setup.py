@@ -36,7 +36,9 @@ setup(
     install_requires=[
         "ptlibs>=1.0.5,<2",
         "validators>=0.18.2",
-        "impacket>=0.9.24"
+        "impacket>=0.9.24",
+        "numpy>=2.5.4",
+        "py7zr>=1.1.4"
     ],
     entry_points={
         'console_scripts': [
