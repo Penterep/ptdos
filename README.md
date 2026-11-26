@@ -143,6 +143,14 @@ $ ptdos -a flatbomb -ks 1 -c 5 -dst http://192.168.0.80/upload.php -o mini.zip
 ```
 $ ptdos -a sevenbomb -ds 1 -l 5 -c 5 -dst http://192.168.0.80/upload.php -o mini.7z
 ```
+**XML Flat Bomb**
+```
+$ ptdos -a xmlflatbomb -xc 50000 -xb 50000 -dst http://192.168.0.80/xml -o bomb.xml
+```
+**XML Bomb**
+```
+$ ptdos -a xmlbomb -xe 9 -xw 10 -xb 100 -dst http://192.168.0.80/xml -o bomb.xml
+```
 
 ### Options
 Not all options can be used with every attack. Check the help for each attack by running ptdos.py -h.
@@ -164,6 +172,10 @@ Not all options can be used with every attack. Check the help for each attack by
 -c      --copies            Ammount of archives in one layer
 -o      --output            Specify output for saving locally
 -ks     --kernel-size       Size of the uncompressed kernel MB
+-xe     --xml-entities      Number of nested entity levels
+-xw     --xml-width         References per level
+-xb     --xml-base          Size of the base entity in bytes
+-xc     --xml-count         Number of top-level entity references
 -v      --version           Show script version and exit
 -h      --help              Show help message and exit
 ```

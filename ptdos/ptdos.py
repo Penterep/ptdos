@@ -112,9 +112,8 @@ def description_help(helper, attacks_names):
                    "Ptdos allows to test various DoS attacks against specified target."
                ]},
                {"Names of supported DoS attacks": [
-                   attacks_names[0:5],
-                   attacks_names[5:]
-               ]},
+                    [", ".join(attacks_names)]
+                ]},
                {"usage": [
                    "ptdos <options>"
                ]},
