@@ -23,6 +23,8 @@ Application ptdos is used for creation of Denial of Service attacks. It is part 
 * Zip Bomb
 * Flat Bomb
 * 7z Bomb
+* XML Flat Bomb
+* XML Bomb
 ### Amplification DoS attacks
 * Smurf Attack
 * NTP Amplification
